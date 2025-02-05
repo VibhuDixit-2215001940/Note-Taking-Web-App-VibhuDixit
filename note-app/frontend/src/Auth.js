@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "./App";
+import './Auth.css'; // CSS file for styling
 
 const Auth = () => {
     const { login } = useContext(AuthContext);
@@ -23,15 +24,39 @@ const Auth = () => {
     };
 
     return (
-        <div>
+        <div className="auth-container">
             <h2>{isLogin ? "Login" : "Register"}</h2>
-            <form onSubmit={handleSubmit}>
-                {!isLogin && <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} />}
-                <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-                <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">{isLogin ? "Login" : "Register"}</button>
+            <form onSubmit={handleSubmit} className="auth-form">
+                {!isLogin && (
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        onChange={(e) => setName(e.target.value)}
+                        className="input-field"
+                    />
+                )}
+                <input
+                    type="email"
+                    placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="input-field"
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="input-field"
+                />
+                <button type="submit" className="submit-btn">
+                    {isLogin ? "Login" : "Register"}
+                </button>
             </form>
-            <button onClick={() => setIsLogin(!isLogin)}>{isLogin ? "Switch to Register" : "Switch to Login"}</button>
+            <button
+                onClick={() => setIsLogin(!isLogin)}
+                className="switch-btn"
+            >
+                {isLogin ? "Switch to Register" : "Switch to Login"}
+            </button>
         </div>
     );
 };
